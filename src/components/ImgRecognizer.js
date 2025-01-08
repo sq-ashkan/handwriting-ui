@@ -1,3 +1,11 @@
+/**
+ * @author   Ashkan Sadri Ghamshi
+ * @project  Character Recognition Web App
+ * @course   HAWK University - Computer Science
+ * @version  1.0.0
+ * @since    January 2025
+ */
+
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 import toast, { Toaster } from "react-hot-toast";
