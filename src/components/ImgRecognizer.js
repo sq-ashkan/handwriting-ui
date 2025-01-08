@@ -5,13 +5,21 @@ import axios from "axios";
 
 export default function ImgRecognizer() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [prediction, setPrediction] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedFile(file);
-    console.log("Selected file:", file);
+    if (file) {
+      setSelectedFile(file);
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setPreviewUrl(fileReader.result);
+      };
+      fileReader.readAsDataURL(file);
+      console.log("Selected file:", file);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -64,22 +72,37 @@ export default function ImgRecognizer() {
                 />
                 <label
                   htmlFor="file-upload"
-                  className="flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-white/50 rounded-lg cursor-pointer bg-white/10 hover:bg-white/20 transition-all duration-200"
+                  className="flex flex-col items-center justify-center w-full h-44 border-2 border-dashed border-white/50 rounded-lg cursor-pointer bg-white/10 hover:bg-white/20 transition-all duration-200 overflow-hidden"
                 >
-                  <Upload className="w-12 h-12 text-white mb-2" />
-                  <span className="text-white text-sm">
-                    {selectedFile ? selectedFile.name : "Choose an image"}
-                  </span>
+                  {previewUrl ? (
+                    <div className="relative w-full h-full">
+                      <img
+                        src={previewUrl}
+                        alt="Preview"
+                        className="w-full h-full object-contain p-2"
+                      />
+                      <div className="absolute bottom-2 left-0 right-0 text-center">
+                        <span className="text-white text-xs bg-black/50 px-2 py-1 rounded">
+                          {selectedFile.name}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <Upload className="w-12 h-12 text-white mb-2" />
+                      <span className="text-white text-sm">Choose an image</span>
+                    </>
+                  )}
                 </label>
               </div>
               <button
                 type="submit"
                 disabled={isLoading || !selectedFile}
-                className="w-full py-3 px-6 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 px-6 bg-purple-700 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? "Processing..." : "Upload Image"}
+                {isLoading ? "Processing..." : "Start Recognising"}
               </button>
-              <div className="text-xs flex justify-center items-center w-full text-center"> 
+              <div className="text-xs flex justify-center items-center w-full text-center text-white/80"> 
                 Ashkan Sadri Ghamshi <br /> HAWK 2025 - made with love ❤️
               </div>
             </div>

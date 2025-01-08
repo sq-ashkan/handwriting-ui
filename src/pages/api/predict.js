@@ -18,10 +18,8 @@ export default async function handler(req, res) {
   
   try {
     const [fields, files] = await form.parse(req);
-    console.log('Files received:', files);
     
     const imageFile = files.image[0];
-    console.log('Image file:', imageFile);
 
     const formData = new FormData();
     formData.append('image', fs.createReadStream(imageFile.filepath));
@@ -36,7 +34,6 @@ export default async function handler(req, res) {
       }
     );
 
-    console.log('API Response:', apiResponse.data);
     res.status(200).json(apiResponse.data);
     
   } catch (error) {
