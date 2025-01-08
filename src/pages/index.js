@@ -1,13 +1,10 @@
-import { useState } from "react";
-import Form from "../../compo/form";
-import ParticlesCom from "../../compo/ParticlesCom";
+import ImgRecognizer from "../components/ImgRecognizer.js";
+import ParticlesCom from "../components/ParticlesCom.js";
 
 const ImageUploader = () => {
   return (
     <div className="p-6 bg-gradient-to-tr  from-[#845ec2] via-[#0091ff] to-[#12eb54] w-full h-screen flex flex-col justify-center items-center">
-      <div className="z-30 h-64 flex flex-col justify-center w-96 max-w-full items-center p-12 bg-white rounded-3xl bg-opacity-25 mt-44">
-        <Form />
-      </div>
+      <ImgRecognizer />
       <ParticlesCom />
     </div>
   );

@@ -18,7 +18,7 @@ const ParticlesCom = () => {
   }, []);
 
   return (
-    <div className=" absolute w-full h-screen left-0 top-0  -z-10 text-white  flex justify-center items-center">
+    <div className=" absolute w-full h-screen left-0 top-0   text-white  flex justify-center items-center">
       {init && (
         <Particles
           id="tsparticles"
