@@ -67,4 +67,4 @@ The application is deployed on Vercel and can be accessed at:
 [https://handwriting-ui.vercel.app/](https://handwriting-ui.vercel.app/)
 
 ## Development Notes
-This application is part of a master's thesis project at HAWK University, focusing on deep learning applications in character recognition. The frontend is designed to provide an intuitive interface for demonstrating the capabilities of the underlying neural network model.
+This application is part of a Student project at HAWK University, focusing on deep learning applications in character recognition. The frontend is designed to provide an intuitive interface for demonstrating the capabilities of the underlying neural network model.
